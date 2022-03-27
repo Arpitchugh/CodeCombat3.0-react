@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import './meme.css'
+import './meme.css';
 
 class MemeGenerator extends React.Component {
 	state = {
 		text: '',
 		allMemeImages: [],
 		randomImg: '',
+		pos: '',
 	};
 
 	componentDidMount() {
@@ -21,17 +22,6 @@ class MemeGenerator extends React.Component {
 			);
 	}
 
-	// Method to change the value of input fields
-	handleChange = event => {
-		// Destructuring the event. target object
-		const { name, value } = event.target;
-
-		// Updating the state variable
-		this.setState({
-			[name]: value,
-		});
-	};
-
 	// Method to submit from and create meme
 	handleSubmit = event => {
 		event.preventDefault();
@@ -42,37 +32,58 @@ class MemeGenerator extends React.Component {
 			randomImg: rand,
 		});
 	};
-  
+
 	render() {
 		return (
 			<div>
-
 				<form className='meme' onSubmit={this.handleSubmit}>
 					<input
 						placeholder='Enter Text'
 						type='text'
 						value={this.state.text}
 						name='text'
-						onChange={this.handleChange}
+						onChange={e => {
+							this.setState({
+								text: e.target.value,
+							});
+						}}
+					/>
+					<input
+						placeholder='top/bottom'
+						type='text'
+						value={this.state.pos}
+						name='position'
+						onChange={e => {
+							this.setState({
+								pos: e.target.value,
+							});
+						}}
 					/>
 					<button>Generate</button>
 				</form>
 				<br />
-				<div className='meme'>
-					{this.state.randomImg === '' ? (
-						''
-					) : (
-						<img src={this.state.randomImg} alt='meme' />
-					)}
-					{this.state.randomImg === '' ? (
-						''
-					) : (
-						<h2 className='top'>{this.state.text}</h2>
-					)}
-					
-				</div>
+				{this.state.pos === 'top' ? (
+					<div className='meme'>
+						{this.state.randomImg === '' ? '' : <h2>{this.state.text}</h2>}
+						{this.state.randomImg === '' ? (
+							''
+						) : (
+							<img src={this.state.randomImg} alt='meme' />
+						)}
+					</div>
+				) : (
+					<div className='meme'>
+						{this.state.randomImg === '' ? (
+							''
+						) : (
+							<img src={this.state.randomImg} alt='meme' />
+						)}
+						{this.state.randomImg === '' ? '' : <h2>{this.state.text}</h2>}
+					</div>
+				)}
 			</div>
 		);
 	}
 }
+
 export default MemeGenerator;

@@ -16,7 +16,7 @@
   transform: translateX(-50%);
   margin: 15px 0;
   padding: 0 5px;
-  font-family: impact, sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 1em;
   text-transform: uppercase;
   color: white;
@@ -24,18 +24,14 @@
   text-shadow: 2px 2px 0 #000;
 }
  
-.meme > .bottom {
-  bottom: 0;
-}
- 
-.meme > .top {
-  top: 0;
-}
- 
+
 form {
   padding-top: 25px;
   text-align: center;
 }
-/* .hidden {
-  display: hidden;
-} */
+input{
+  display: flex;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+}
